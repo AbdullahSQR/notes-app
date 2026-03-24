@@ -4,7 +4,6 @@ const mysql = require('mysql2')
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 const db = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
@@ -23,7 +22,7 @@ app.get('/', (req, res) => {
     db.query('SELECT * FROM notes', (err, results) => {
         const notes = results || []
         res.send(`
-            <h1>Notes App</h1>
+            <h1>My Notes App</h1>
             <form method="POST" action="/notes">
                 <input name="note" placeholder="Write a note..." required />
                 <button type="submit">Add Note</button>
