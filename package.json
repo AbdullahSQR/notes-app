@@ -1,0 +1,10 @@
+{
+    "name": "notes-app",
+    "scripts": {
+        "start": "node src/index.js"
+    },
+    "dependencies": {
+        "express": "latest",
+        "mysql2": "latest"
+    }
+}
