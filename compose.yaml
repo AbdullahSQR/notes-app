@@ -9,7 +9,7 @@ services:
       - MYSQL_PASSWORD=secret
       - MYSQL_DB=notes
     volumes:
-      - "C:/Users/lenovo/notes-app:/app"
+      - "./:/app"
       - node_modules:/app/node_modules
     depends_on:
       mysql:
