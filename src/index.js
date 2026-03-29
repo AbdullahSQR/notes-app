@@ -38,7 +38,7 @@ db.query(`
     )
 `)
 
-app.get('/notes', (req, res) => {
+app.get('/notes', keycloak.protect(), (req, res) => {
     db.query('SELECT * FROM notes', (err, results) => {
         const notes = results || []
         res.json(results)
