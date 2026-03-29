@@ -24,7 +24,7 @@ app.use(session({
 
 const keycloak = new Keycloak({ store: memoryStore }, {
     realm: 'notes-app',
-    'auth-server-url': 'http://localhost:8080',
+    'auth-server-url': 'http://keycloak:8080',
     resource: 'notes-app',
     'bearer-only': true
 })

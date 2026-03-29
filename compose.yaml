@@ -36,6 +36,9 @@ services:
     environment:
       - KC_BOOTSTRAP_ADMIN_USERNAME
       - KC_BOOTSTRAP_ADMIN_PASSWORD
+      - KC_HOSTNAME
+      - KC_HOSTNAME_STRICT
+      - KC_HTTP_ENABLED
     command: start-dev
     volumes:
       - keycloak-data:/opt/key-cloak/data
