@@ -5,6 +5,16 @@ const Keycloak = require('keycloak-connect')
 
 const memoryStore = new session.MemoryStore()
 
+const app = express()
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+const db = mysql.createConnection({
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DB
+})
+
 app.use(session({
     secret: 'some secret',
     resave: false,
@@ -20,16 +30,6 @@ const keycloak = new Keycloak({ store: memoryStore }, {
 })
 
 app.use(keycloak.middleware())
-
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-const db = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DB
-})
 
 db.query(`
     CREATE TABLE IF NOT EXISTS notes (
