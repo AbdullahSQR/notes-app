@@ -28,6 +28,16 @@ services:
       timeout: 5s
       retries: 10
       start_period: 30s
+  
+  keycloak:
+    image: quay.io/keycloak/keycloak
+    ports: 
+      - 127.0.0.1:8080:8080
+    environment:
+      - KEYCLOAK_ADMIN=kyliuv
+      - KEYCLOAK_ADMIN_PASSWORD=secret
+    command: start-dev
+
 
 volumes:
   note-mysql-data:
