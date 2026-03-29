@@ -1,5 +1,25 @@
 const express = require('express')
 const mysql = require('mysql2')
+const session = require('express-session')
+const Keycloak = require('keycloak-connect')
+
+const memoryStore = new session.MemoryStore()
+
+app.use(session({
+    secret: 'some secret',
+    resave: false,
+    saveUninitialized: true,
+    store: memoryStore
+}))
+
+const keycloak = new Keycloak({ store: memoryStore }, {
+    realm: 'notes-app',
+    'auth-server-url': 'http://keycloak:8080',
+    resource: 'notes-app',
+    'bearer-only': true
+})
+
+app.use(keycloak.middleware())
 
 const app = express()
 app.use(express.json())
