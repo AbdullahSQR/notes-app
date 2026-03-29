@@ -37,8 +37,11 @@ services:
       - KEYCLOAK_ADMIN
       - KEYCLOAK_ADMIN_PASSWORD
     command: start-dev
+    volumes:
+      - keycloak-data:/opt/key-cloak/data
 
 
 volumes:
   note-mysql-data:
   node_modules:
+  keycloak-data:
