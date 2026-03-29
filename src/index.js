@@ -18,26 +18,17 @@ db.query(`
     )
 `)
 
-app.get('/', (req, res) => {
+app.get('/notes', (req, res) => {
     db.query('SELECT * FROM notes', (err, results) => {
         const notes = results || []
-        res.send(`
-            <h1>My Notes App</h1>
-            <form method="POST" action="/notes">
-                <input name="note" placeholder="Write a note..." required />
-                <button type="submit">Add Note</button>
-            </form>
-            <ul>
-                ${notes.map(n => `<li>${n.note}</li>`).join('')}
-            </ul>
-        `)
+        res.json(results)
     })
 })
 
 app.post('/notes', (req, res) => {
     const { note } = req.body
     db.query('INSERT INTO notes (note) VALUES (?)', [note], (err) => {
-        res.redirect('/')
+        res.redirect('/notes')
     })
 })
 
